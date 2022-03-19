@@ -14,4 +14,4 @@ docker run \
 -e MONGO_INITDB_ROOT_USERNAME=${MONGO_USERNAME} \
 -p "${DB_PORT}":27017 \
 --name mongodb \
-mongo
+-d mongo
