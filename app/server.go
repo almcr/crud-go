@@ -44,14 +44,14 @@ func (server *Server) SetRoutes() {
 	// routes
 	server.Router.POST("/signup", controllers.SignUp())
 	server.Router.POST("/login", controllers.Login())
-	server.Router.POST("/add/users", controllers.AddUsers())
-	server.Router.DELETE("/delete/user/:id", controllers.DeleteUser())
-	server.Router.PATCH("/update/user/:id", controllers.UpdateUser())
 
 	authorized := server.Router.Group("/")
 
 	authorized.Use(middlewares.AuthRequired())
 	{
+		authorized.POST("/add/users", controllers.AddUsers())
+		authorized.DELETE("/delete/user/:id", controllers.DeleteUser())
+		authorized.PATCH("/update/user/:id", controllers.UpdateUser())
 		authorized.GET("/user/:id", controllers.GetUser())
 	}
 }
