@@ -18,3 +18,5 @@ I also dabbled with jwt, the topic of security is so fascinating
 - [ ]  better error handling
 - [ ]  setup CI
 - [ ]  use change steam for update route
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://god.postman.co/run-collection/ceee14bc8aeb05f44dfc?action=collection%2Fimport)
