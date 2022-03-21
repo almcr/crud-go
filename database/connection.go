@@ -7,20 +7,21 @@ import (
 	"os"
 	"time"
 
-	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func NewInstance() *mongo.Client {
-	err := godotenv.Load(".env")
+var (
+	Client          *mongo.Client
+	CrudDb          *mongo.Database
+	UsersCollection *mongo.Collection
+)
 
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
+func Init() {
+	mongodbUrl := os.Getenv("MONGO_URL")
 
-	mongodbUrl := os.Getenv("MONGODB_URL")
-	client, err := mongo.NewClient(options.Client().ApplyURI(mongodbUrl))
+	log.Println("Connecting to: " + mongodbUrl)
+	Client, err := mongo.NewClient(options.Client().ApplyURI(mongodbUrl))
 
 	if err != nil {
 		log.Fatal(err)
@@ -28,14 +29,15 @@ func NewInstance() *mongo.Client {
 
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 
+	// Create a default test db
+	CrudDb = Client.Database("test")
+	// Create data collection
+	UsersCollection = CrudDb.Collection("users_data")
+
 	defer cancel()
-	err = client.Connect(ctx)
+	err = Client.Connect(ctx)
 	if err != nil {
 		log.Fatal(err)
 	}
 	fmt.Println("Connected to MongoDB !!")
-
-	return client
 }
-
-var Client *mongo.Client = NewInstance()
