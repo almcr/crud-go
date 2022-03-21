@@ -1,4 +1,6 @@
 ## Crud API written in Go and Gin
+![example workflow](https://github.com/almcr/crud-go/actions/workflows/main.yml/badge.svg)
+---
 This is my first take on using Go environment to create a simple crud application. Go has really low entry barrier, and has a huge community which makes it simple to find learning resources. 
 
 ### Technologies
