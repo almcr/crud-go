@@ -71,9 +71,18 @@ func AddUsers() gin.HandlerFunc {
 	// error_chan := make(chan error)
 
 	return func(ginCtx *gin.Context) {
-		decoder := json.NewDecoder(ginCtx.Request.Body)
+		fileHeader, err := ginCtx.FormFile("data")
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		file, err := fileHeader.Open()
+
+		defer file.Close()
+		decoder := json.NewDecoder(file)
+
 		// open bracket [ decode
-		_, err := decoder.Token()
+		_, err = decoder.Token()
 		if err != nil {
 			log.Print(err)
 			ginCtx.JSON(http.StatusBadRequest, gin.H{"error": "Malformed user data"})
