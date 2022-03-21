@@ -20,5 +20,8 @@ I also dabbled with jwt, the topic of security is so fascinating
 - [ ]  better error handling and recovery
 - [ ]  setup CI
 - [ ]  use change steam for update route
+### Usage
+Run the script `init_db.sh`  to launch a mongo container and `go run` to launch the app
+
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.postman.co/run-collection/ceee14bc8aeb05f44dfc?action=collection%2Fimport)
