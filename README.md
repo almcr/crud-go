@@ -15,7 +15,7 @@ I also dabbled with jwt, the topic of security is so fascinating
 
 ### Todo
 - [ ]  tests
-- [ ]  better error handling
+- [ ]  better error handling and recovery
 - [ ]  setup CI
 - [ ]  use change steam for update route
 
